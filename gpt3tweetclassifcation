@@ -1,0 +1,27 @@
+import os
+import openai
+
+openai.api_key =  ''
+
+
+## gpt3 model that classifies tweet's sentiments
+def determine_sentiment(tweet):
+  response = openai.Completion.create(
+      model="text-davinci-003",
+      prompt = "Decide whether a Tweet's sentiment is positive or negative.\n\nTweet: \"" + tweet + "\"\nTweet Sentiment Rating:",
+      temperature=0,
+      max_tokens=60,
+      top_p=1.0,
+      frequency_penalty=0.0,
+      presence_penalty=0.0)
+  return response["choices"][0]["text"]
+
+## loops through tweets and determine's its sentiment
+##tweets = ["This is amazing.", "This is terrible.", "I just had the worst day ever!", "I am done.", "I am hopeless.",  "This is terrible and I am sad.", "This is so bad."]
+
+tweet = input("Enter tweet: ")
+
+print(tweet)
+print(determine_sentiment(tweet))
+
+
